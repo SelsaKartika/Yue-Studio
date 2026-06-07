@@ -52,40 +52,31 @@ body {
   pointer-events: none;
 }
 
-/* Mobile: tiap section punya background sendiri */
+/* Mobile: gunakan wrapper div background */
 @media (max-width: 768px) {
-  #bg-layer, #bg-overlay {
-    display: none;
+  #bg-layer {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-image: url('bg-mobile.png') !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: repeat-y !important;
+    z-index: -2;
   }
-
-  body {
-    background-color: var(--cream);
+  #bg-overlay {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    background: rgba(245, 240, 232, 0.2) !important;
   }
-
-  .hero,
-  .tab-section {
-    background-image: url('bg-mobile.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
+  html {
     position: relative;
-  }
-
-  .hero::after,
-  .tab-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(245, 240, 232, 0.25);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .hero > *,
-  .tab-section > * {
-    position: relative;
-    z-index: 1;
   }
 }
 
@@ -704,27 +695,36 @@ footer {
 
 .back-btn {
   position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 1.5rem;
+  left: 1.5rem;
   z-index: 200;
   background: rgba(245, 240, 232, 0.95);
   border: 1px solid rgba(139, 26, 26, 0.3);
   color: var(--dark-red);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  padding: 0.6rem 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(8px);
   white-space: nowrap;
   box-shadow: 0 4px 20px rgba(139, 26, 26, 0.12);
+  border-radius: 2px;
 }
 
 .back-btn:hover {
   background: var(--dark-red);
   color: var(--cream);
+}
+
+@media (max-width: 768px) {
+  .back-btn {
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+  }
 }
 
 /* ===== PORTFOLIO SECTION ===== */
