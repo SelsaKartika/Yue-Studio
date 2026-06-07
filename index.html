@@ -29,43 +29,32 @@ body {
   overflow-x: hidden;
 }
 
-/* Background div - lebih reliable di semua browser */
+/* Background layer */
 #bg-layer {
   position: fixed;
-  inset: 0;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   background-image: url('bg-desktop.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
   z-index: -2;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 #bg-overlay {
   position: fixed;
-  inset: 0;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(245, 240, 232, 0.28);
   z-index: -1;
   pointer-events: none;
-}
-
-@media (max-width: 768px) {
-  #bg-layer {
-    position: fixed;
-    inset: 0;
-    background-image: url('bg-mobile.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-  }
-  #bg-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(245, 240, 232, 0.22);
-  }
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* ===== NAVBAR ===== */
@@ -1239,6 +1228,32 @@ function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   menu.classList.toggle('open');
 }
+
+// Fix background for mobile
+(function() {
+  const isMobile = window.innerWidth <= 768;
+  const bgLayer = document.getElementById('bg-layer');
+  const bgOverlay = document.getElementById('bg-overlay');
+  
+  if (isMobile) {
+    bgLayer.style.backgroundImage = "url('bg-mobile.png')";
+    bgLayer.style.position = 'fixed';
+    bgLayer.style.top = '0';
+    bgLayer.style.left = '0';
+    bgLayer.style.width = '100%';
+    bgLayer.style.height = '100%';
+    bgLayer.style.backgroundSize = 'cover';
+    bgLayer.style.backgroundPosition = 'center top';
+    bgLayer.style.zIndex = '-2';
+    bgOverlay.style.background = 'rgba(245, 240, 232, 0.22)';
+  }
+
+  // Re-check on resize
+  window.addEventListener('resize', function() {
+    const mobile = window.innerWidth <= 768;
+    bgLayer.style.backgroundImage = mobile ? "url('bg-mobile.png')" : "url('bg-desktop.png')";
+  });
+})();
 </script>
 </body>
 </html>
