@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuè Studio 月 — Made by Yue</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5f0e8;
+  --warm-white: #faf7f2;
+  --dark-red: #8b1a1a;
+  --muted-red: #c0392b;
+  --gold: #b8960c;
+  --dark-olive: #4a5240;
+  --soft-pink: #e8a0a0;
+  --ink: #1a1a1a;
+  --light-ink: #3d3530;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--cream);
+  background-image: url('bg-desktop.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--light-ink);
+  font-family: 'EB Garamond', serif;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: url('bg-mobile.png');
+    background-attachment: scroll;
+  }
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(245, 240, 232, 0.45);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 4rem;
+  background: rgba(245, 240, 232, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(139, 26, 26, 0.12);
+}
+
+.nav-logo {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.1rem;
+  color: var(--dark-red);
+  letter-spacing: 0.15em;
+  text-decoration: none;
+}
+
+.nav-logo span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  color: var(--dark-olive);
+  margin-left: 0.5rem;
+  letter-spacing: 0.2em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: var(--light-ink);
+  transition: color 0.3s;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover { color: var(--dark-red); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative corner elements */
+.hero::before, .hero::after {
+  content: '✦';
+  position: absolute;
+  font-size: 3rem;
+  color: rgba(139, 26, 26, 0.12);
+}
+.hero::before { top: 6rem; left: 3rem; }
+.hero::after { bottom: 3rem; right: 3rem; }
+
+.hero-ornament {
+  display: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 1.2s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dark-olive);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+.hero-tag::before, .hero-tag::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--dark-olive);
+  opacity: 0.5;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--dark-red);
+}
+
+.hero-kanji {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.2rem;
+  color: var(--dark-olive);
+  letter-spacing: 0.3em;
+  margin-bottom: 2rem;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: var(--light-ink);
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-tagline span {
+  color: var(--dark-red);
+  opacity: 1;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.9rem 3rem;
+  border: 1.5px solid var(--dark-red);
+  color: var(--dark-red);
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dark-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--cream);
+}
+.btn-primary:hover::before {
+  transform: scaleX(1);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto 4rem;
+  max-width: 300px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--dark-red));
+}
+.divider::after {
+  background: linear-gradient(to left, transparent, var(--dark-red));
+}
+.divider-icon {
+  color: var(--dark-red);
+  font-size: 1rem;
+}
+
+/* ===== SECTION BASE ===== */
+section {
+  padding: 6rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--dark-red);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  text-align: center;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--dark-red);
+}
+
+/* ===== SERVICES SECTION ===== */
+#services {
+  background: var(--warm-white);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.service-card {
+  border: 1px solid rgba(139, 26, 26, 0.15);
+  padding: 2.5rem;
+  position: relative;
+  background-image: url('bg-mobile.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 247, 242, 0.45);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.service-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--dark-red);
+  transition: height 0.4s ease;
+  z-index: 2;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(139, 26, 26, 0.1);
+}
+
+.service-card:hover::before {
+  height: 100%;
+}
+
+.service-category {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--dark-olive);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.service-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--dark-red);
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.service-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.service-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px dashed rgba(139, 26, 26, 0.12);
+}
+
+.service-items li:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  color: var(--light-ink);
+}
+
+.item-note {
+  font-size: 0.8rem;
+  color: var(--dark-olive);
+  font-style: italic;
+}
+
+.item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-red);
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+/* ===== ABOUT SECTION ===== */
+#about {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-body {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--light-ink);
+  opacity: 0.85;
+  margin-bottom: 3rem;
+}
+
+.about-features {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature-icon {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.8rem;
+  color: var(--dark-red);
+  opacity: 0.7;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.feature-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dark-olive);
+}
+
+/* ===== CONTACT SECTION ===== */
+#contact {
+  background: transparent;
+  color: var(--light-ink);
+  text-align: center;
+}
+
+#contact .section-title {
+  color: var(--ink);
+}
+
+#contact .section-label {
+  color: var(--dark-red);
+}
+
+.contact-sub {
+  font-size: 1rem;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+  color: var(--light-ink);
+}
+
+.contact-list {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(139, 26, 26, 0.18);
+  background: rgba(250, 247, 242, 0.75);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contact-item:hover {
+  background: rgba(250, 247, 242, 0.95);
+  border-color: rgba(139, 26, 26, 0.35);
+  transform: translateX(4px);
+}
+
+.contact-label {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dark-red);
+  font-size: 0.9rem;
+}
+
+.contact-handle-text {
+  color: var(--light-ink);
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.contact-item:hover .contact-handle-text {
+  opacity: 0.7;
+}
+
+.contact-note {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  color: var(--light-ink);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(245, 240, 232, 0.08);
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.9rem;
+  color: var(--cream);
+  opacity: 0.4;
+  letter-spacing: 0.2em;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay */
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+  .nav-links {
+    display: none;
+  }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-features {
+    gap: 2rem;
+  }
+}
+
+/* ===== TAB NAVIGATION ===== */
+.tab-section {
+  min-height: 100vh;
+}
+
+.back-btn {
+  position: fixed;
+  top: 1.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: transparent;
+  border: 1px solid rgba(139, 26, 26, 0.3);
+  color: var(--dark-red);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  padding: 0.4rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: var(--dark-red);
+  color: var(--cream);
+}
+
+/* ===== PORTFOLIO SECTION ===== */
+#portfolio {
+  background: transparent;
+  padding-top: 7rem;
+}
+
+.portfolio-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.8rem;
+  border: 1px solid rgba(139, 26, 26, 0.25);
+  background: rgba(250, 247, 242, 0.7);
+  color: var(--light-ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--dark-red);
+  color: var(--cream);
+  border-color: var(--dark-red);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 960px;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portfolio-item {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.portfolio-item.hidden {
+  display: none;
+}
+
+.portfolio-img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(139, 26, 26, 0.15);
+  background: rgba(250, 247, 242, 0.8);
+}
+
+.portfolio-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-img-wrap.no-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-img-wrap.no-img::before {
+  content: '月';
+  font-family: 'Noto Serif SC', serif;
+  font-size: 3rem;
+  color: var(--dark-red);
+  opacity: 0.2;
+}
+
+.portfolio-img-wrap.no-img img {
+  display: none;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(139, 26, 26, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.portfolio-img-wrap:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+.portfolio-cat {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.7);
+  margin-bottom: 0.4rem;
+}
+
+.portfolio-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--cream);
+  font-style: italic;
+}
+
+.portfolio-note {
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.65;
+  color: var(--light-ink);
+  margin-top: 1rem;
+}
+
+.portfolio-note a {
+  color: var(--dark-red);
+  text-decoration: none;
+}
+
+.portfolio-note a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">月 <span>Yuè Studio</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showTab('services'); return false;">Services</a></li>
+    <li><a href="#" onclick="showTab('portfolio'); return false;">Portfolio</a></li>
+    <li><a href="#" onclick="showTab('about'); return false;">About</a></li>
+    <li><a href="#" onclick="showTab('contact'); return false;">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament">月</div>
+  <div class="hero-content">
+    <p class="hero-tag">月工作室</p>
+    <h1 class="hero-title">Yuè <em>Studio</em></h1>
+    <p class="hero-kanji">月工作室 · Made by Yue</p>
+    <p class="hero-tagline">
+      <span>✦</span> Fast Response <span>✦</span> Harga Pelajar <span>✦</span> Bisa Request
+    </p>
+    <a href="#" onclick="showTab('services'); return false;" class="btn-primary">Lihat Layanan</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="tab-section" style="display:none;">
+  <button class="back-btn" onclick="showTab('home')">← Kembali</button>
+  <p class="section-label reveal">What We Offer</p>
+  <h2 class="section-title reveal">Layanan <em>Kami</em></h2>
+  <div class="divider reveal"><span class="divider-icon">❧</span></div>
+
+  <div class="services-grid">
+
+    <!-- Desain -->
+    <div class="service-card reveal">
+      <p class="service-category">Visual Design</p>
+      <h3 class="service-title">Jasa Desain</h3>
+      <ul class="service-items">
+        <li>
+          <span class="item-name">Presentation (PPT) <span class="item-note">Sempro, Tugas, Bisnis</span></span>
+          <span class="item-price">3k/slide</span>
+        </li>
+        <li>
+          <span class="item-name">Poster</span>
+          <span class="item-price">Start 18k</span>
+        </li>
+        <li>
+          <span class="item-name">Mindmap</span>
+          <span class="item-price">Start 25k</span>
+        </li>
+        <li>
+          <span class="item-name">Banner</span>
+          <span class="item-price">Start 15k</span>
+        </li>
+        <li>
+          <span class="item-name">Menu / Price List</span>
+          <span class="item-price">Start 20k</span>
+        </li>
+        <li>
+          <span class="item-name">Undangan</span>
+          <span class="item-price">Start 15k</span>
+        </li>
+        <li>
+          <span class="item-name">Instagram Feed</span>
+          <span class="item-price">Start 12k</span>
+        </li>
+        <li>
+          <span class="item-name">Instagram Story</span>
+          <span class="item-price">Start 5k</span>
+        </li>
+        <li>
+          <span class="item-name">Logo</span>
+          <span class="item-price">Start 30k</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Web Services -->
+    <div class="service-card reveal">
+      <p class="service-category">Tech & Development</p>
+      <h3 class="service-title">Web Services</h3>
+      <ul class="service-items">
+        <li>
+          <span class="item-name">Frontend Development</span>
+          <span class="item-price">Start 50k</span>
+        </li>
+        <li>
+          <span class="item-name">Figma Design <span class="item-note">per tampilan</span></span>
+          <span class="item-price">Start 10k</span>
+        </li>
+        <li>
+          <span class="item-name">Pembuatan Website <span class="item-note">Tugas Sekolah/Kampus</span></span>
+          <span class="item-price">Start 100k</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Pengetikan & Jurnal -->
+    <div class="service-card reveal">
+      <p class="service-category">Writing & Research</p>
+      <h3 class="service-title">Pengetikan & Jurnal</h3>
+      <ul class="service-items">
+        <li>
+          <span class="item-name">Essay</span>
+          <span class="item-price">2k/hlm</span>
+        </li>
+        <li>
+          <span class="item-name">Artikel</span>
+          <span class="item-price">4k/hlm</span>
+        </li>
+        <li>
+          <span class="item-name">Proposal / Makalah</span>
+          <span class="item-price">5k/hlm</span>
+        </li>
+        <li>
+          <span class="item-name">Laporan</span>
+          <span class="item-price">6k/hlm</span>
+        </li>
+        <li>
+          <span class="item-name">Formatting Word</span>
+          <span class="item-price">Start 10k</span>
+        </li>
+        <li>
+          <span class="item-name">Tugas Soal <span class="item-note">SD–Kuliah</span></span>
+          <span class="item-price">Start 5k</span>
+        </li>
+        <li>
+          <span class="item-name">Jasa Ketik</span>
+          <span class="item-price">3k/hlm</span>
+        </li>
+        <li>
+          <span class="item-name">Jasa Tulis</span>
+          <span class="item-price">5k/hlm</span>
+        </li>
+        <li>
+          <span class="item-name">Cari Jurnal <span class="item-note">Sinta dll</span></span>
+          <span class="item-price">5k–12k</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="tab-section" style="display:none;">
+  <button class="back-btn" onclick="showTab('home')">← Kembali</button>
+  <p class="section-label reveal">Studio</p>
+  <h2 class="section-title reveal">Tentang <em>Yuè</em></h2>
+  <div class="divider reveal"><span class="divider-icon">❧</span></div>
+  <p class="about-body reveal">
+    Yuè Studio — 月工作室 — adalah studio kreatif yang menawarkan berbagai layanan desain, 
+    web development, dan pengetikan dengan harga yang terjangkau untuk pelajar dan mahasiswa. 
+    Setiap karya dibuat dengan penuh dedikasi dan perhatian terhadap detail.
+  </p>
+  <div class="about-features">
+    <div class="feature reveal">
+      <span class="feature-icon">速</span>
+      <span class="feature-text">Fast Response</span>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-icon">价</span>
+      <span class="feature-text">Harga Pelajar</span>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-icon">创</span>
+      <span class="feature-text">Custom Request</span>
+    </div>
+    <div class="feature reveal">
+      <span class="feature-icon">质</span>
+      <span class="feature-text">Quality Work</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="tab-section" style="display:none;">
+  <button class="back-btn" onclick="showTab('home')">← Kembali</button>
+  <p class="section-label reveal">Get in Touch</p>
+  <h2 class="section-title reveal">Hubungi <em>Kami</em></h2>
+  <div class="divider" style="border-color: rgba(245,240,232,0.2)"><span class="divider-icon" style="color:var(--soft-pink)">❧</span></div>
+  <p class="contact-sub reveal">
+    DM Only — Siap melayani pesanan, konsultasi, dan custom request.
+  </p>
+  <div class="contact-list reveal">
+    <a class="contact-item" href="https://twitter.com/Yue_Studio" target="_blank" rel="noopener">
+      <span class="contact-label">Twitter / X</span>
+      <span class="contact-handle-text">@Yue_Studio</span>
+    </a>
+    <a class="contact-item" href="https://instagram.com/yuestudio.madebyyue" target="_blank" rel="noopener">
+      <span class="contact-label">Instagram</span>
+      <span class="contact-handle-text">@yuestudio.madebyyue</span>
+    </a>
+    <a class="contact-item" href="https://wa.me/628134721755" target="_blank" rel="noopener">
+      <span class="contact-label">WhatsApp</span>
+      <span class="contact-handle-text">+62 813 4721 755</span>
+    </a>
+    <a class="contact-item" href="https://tiktok.com/@yuestudio_madebyyue" target="_blank" rel="noopener">
+      <span class="contact-label">TikTok</span>
+      <span class="contact-handle-text">@yuestudio_madebyyue</span>
+    </a>
+  </div>
+  <p class="contact-note reveal">Yuè Studio 月工作室 · Made by Yue</p>
+</section>
+
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="tab-section" style="display:none;">
+  <button class="back-btn" onclick="showTab('home')">← Kembali</button>
+  <p class="section-label reveal">Hasil Karya</p>
+  <h2 class="section-title reveal">Porto<em>folio</em></h2>
+  <div class="divider reveal"><span class="divider-icon">❧</span></div>
+
+  <!-- Filter Buttons -->
+  <div class="portfolio-filters reveal">
+    <button class="filter-btn active" onclick="filterPortfolio('all', this)">Semua</button>
+    <button class="filter-btn" onclick="filterPortfolio('ppt', this)">PPT</button>
+    <button class="filter-btn" onclick="filterPortfolio('poster', this)">Poster</button>
+    <button class="filter-btn" onclick="filterPortfolio('banner', this)">Banner</button>
+    <button class="filter-btn" onclick="filterPortfolio('logo', this)">Logo</button>
+    <button class="filter-btn" onclick="filterPortfolio('lainnya', this)">Lainnya</button>
+  </div>
+
+  <!-- Gallery Grid -->
+  <!-- Untuk menambah foto: taruh file gambar di folder yang sama, ganti src="porto-1.jpg" dst -->
+  <div class="portfolio-grid" id="portfolioGrid">
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-1.jpg" alt="PPT" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-2.jpg" alt="PPT" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-3.jpg" alt="Poster" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-4.jpg" alt="Poster" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+         <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-5.jpg" alt="Banner" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-6.jpg" alt="Logo" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-7.jpg" alt="Lainnya" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="portfolio-item" data-category="poster">
+      <div class="portfolio-img-wrap">
+        <img src="porto-8.jpg" alt="Lainnya" onerror="this.parentElement.classList.add('no-img')">
+        <div class="portfolio-overlay">
+          <span class="portfolio-cat">Yuè Content</span>
+          <p class="portfolio-name">Content Creation</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="portfolio-note reveal">Ingin melihat lebih banyak karya? DM <a href="https://twitter.com/Yue_Studio" target="_blank">@Yue_Studio</a></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">月工作室 · Yuè Studio · Made by Yue · 2025</p>
+</footer>
+
+<script>
+function showTab(tab) {
+  // Hide all
+  document.querySelector('.hero').style.display = 'none';
+  document.querySelectorAll('.tab-section').forEach(s => s.style.display = 'none');
+
+  if (tab === 'home') {
+    document.querySelector('.hero').style.display = 'flex';
+  } else {
+    const el = document.getElementById(tab);
+    if (el) {
+      el.style.display = 'block';
+      window.scrollTo(0, 0);
+      // Trigger reveal animations
+      setTimeout(() => {
+        el.querySelectorAll('.reveal').forEach(r => r.classList.add('visible'));
+      }, 100);
+    }
+  }
+}
+
+// Scroll reveal for hero on load
+const reveals = document.querySelectorAll('.hero .reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+function filterPortfolio(cat, btn) {
+  // Update active button
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Show/hide items
+  document.querySelectorAll('.portfolio-item').forEach(item => {
+    if (cat === 'all' || item.dataset.category === cat) {
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>
