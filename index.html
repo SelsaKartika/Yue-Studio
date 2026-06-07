@@ -58,8 +58,8 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 4rem;
-  background: rgba(245, 240, 232, 0.92);
+  padding: 1rem 2rem;
+  background: rgba(245, 240, 232, 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(139, 26, 26, 0.12);
 }
@@ -553,6 +553,67 @@ footer {
 .reveal:nth-child(4) { transition-delay: 0.3s; }
 
 /* ===== RESPONSIVE ===== */
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 201;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--dark-red);
+  display: block;
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(245, 240, 232, 0.98);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--dark-red);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s;
+}
+
+.mobile-menu a:hover { opacity: 0.6; }
+
+.mobile-menu-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--dark-red);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+}
+
 @media (max-width: 768px) {
   nav {
     padding: 1rem 1.5rem;
@@ -560,11 +621,39 @@ footer {
   .nav-links {
     display: none;
   }
+  .hamburger {
+    display: flex;
+  }
   .services-grid {
     grid-template-columns: 1fr;
   }
   .about-features {
     gap: 2rem;
+  }
+  .hero-title {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 7vw, 3rem);
+  }
+  .service-card {
+    padding: 1.5rem;
+  }
+  #portfolio {
+    padding-top: 6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+  section {
+    padding: 5rem 1rem;
+  }
+  .back-btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.9rem;
   }
 }
 
@@ -575,19 +664,22 @@ footer {
 
 .back-btn {
   position: fixed;
-  top: 1.3rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;
-  background: transparent;
+  background: rgba(245, 240, 232, 0.95);
   border: 1px solid rgba(139, 26, 26, 0.3);
   color: var(--dark-red);
   font-family: 'Cormorant Garamond', serif;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
-  padding: 0.4rem 1.2rem;
+  padding: 0.6rem 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(139, 26, 26, 0.12);
 }
 
 .back-btn:hover {
@@ -757,7 +849,20 @@ footer {
     <li><a href="#" onclick="showTab('about'); return false;">About</a></li>
     <li><a href="#" onclick="showTab('contact'); return false;">Contact</a></li>
   </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
+  <a href="#" onclick="showTab('home'); toggleMenu(); return false;">Home</a>
+  <a href="#" onclick="showTab('services'); toggleMenu(); return false;">Services</a>
+  <a href="#" onclick="showTab('portfolio'); toggleMenu(); return false;">Portfolio</a>
+  <a href="#" onclick="showTab('about'); toggleMenu(); return false;">About</a>
+  <a href="#" onclick="showTab('contact'); toggleMenu(); return false;">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -976,22 +1081,22 @@ footer {
   <!-- Untuk menambah foto: taruh file gambar di folder yang sama, ganti src="porto-1.jpg" dst -->
   <div class="portfolio-grid" id="portfolioGrid">
 
-    <div class="portfolio-item" data-category="poster">
+    <div class="portfolio-item" data-category="ppt">
       <div class="portfolio-img-wrap">
         <img src="porto-1.jpg" alt="PPT" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">PPT</span>
+          <p class="portfolio-name">Presentation</p>
         </div>
       </div>
     </div>
 
-    <div class="portfolio-item" data-category="poster">
+    <div class="portfolio-item" data-category="ppt">
       <div class="portfolio-img-wrap">
         <img src="porto-2.jpg" alt="PPT" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">PPT</span>
+          <p class="portfolio-name">Presentation</p>
         </div>
       </div>
     </div>
@@ -1000,8 +1105,8 @@ footer {
       <div class="portfolio-img-wrap">
         <img src="porto-3.jpg" alt="Poster" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">Poster</span>
+          <p class="portfolio-name">Poster</p>
         </div>
       </div>
     </div>
@@ -1010,48 +1115,48 @@ footer {
       <div class="portfolio-img-wrap">
         <img src="porto-4.jpg" alt="Poster" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-         <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">Poster</span>
+          <p class="portfolio-name">Poster</p>
         </div>
       </div>
     </div>
 
-    <div class="portfolio-item" data-category="poster">
+    <div class="portfolio-item" data-category="banner">
       <div class="portfolio-img-wrap">
         <img src="porto-5.jpg" alt="Banner" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">Banner</span>
+          <p class="portfolio-name">Banner</p>
         </div>
       </div>
     </div>
 
-    <div class="portfolio-item" data-category="poster">
+    <div class="portfolio-item" data-category="logo">
       <div class="portfolio-img-wrap">
         <img src="porto-6.jpg" alt="Logo" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">Logo</span>
+          <p class="portfolio-name">Logo Design</p>
         </div>
       </div>
     </div>
 
-    <div class="portfolio-item" data-category="poster">
+    <div class="portfolio-item" data-category="lainnya">
       <div class="portfolio-img-wrap">
         <img src="porto-7.jpg" alt="Lainnya" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">Lainnya</span>
+          <p class="portfolio-name">Instagram Feed</p>
         </div>
       </div>
     </div>
 
-    <div class="portfolio-item" data-category="poster">
+    <div class="portfolio-item" data-category="lainnya">
       <div class="portfolio-img-wrap">
         <img src="porto-8.jpg" alt="Lainnya" onerror="this.parentElement.classList.add('no-img')">
         <div class="portfolio-overlay">
-          <span class="portfolio-cat">Yuè Content</span>
-          <p class="portfolio-name">Content Creation</p>
+          <span class="portfolio-cat">Lainnya</span>
+          <p class="portfolio-name">Undangan</p>
         </div>
       </div>
     </div>
@@ -1097,11 +1202,8 @@ const observer = new IntersectionObserver((entries) => {
 reveals.forEach(el => observer.observe(el));
 
 function filterPortfolio(cat, btn) {
-  // Update active button
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
-  // Show/hide items
   document.querySelectorAll('.portfolio-item').forEach(item => {
     if (cat === 'all' || item.dataset.category === cat) {
       item.classList.remove('hidden');
@@ -1109,6 +1211,11 @@ function filterPortfolio(cat, btn) {
       item.classList.add('hidden');
     }
   });
+}
+
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
 }
 </script>
 </body>
