@@ -29,42 +29,37 @@ body {
   overflow-x: hidden;
 }
 
-/* Background pseudo-element supaya fixed works di desktop */
-body::before {
-  content: '';
+/* Background div - lebih reliable di semua browser */
+#bg-layer {
   position: fixed;
   inset: 0;
   background-image: url('bg-desktop.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: -2;
 }
 
-/* Overlay tipis di atas background */
-body::after {
-  content: '';
+#bg-overlay {
   position: fixed;
   inset: 0;
   background: rgba(245, 240, 232, 0.28);
-  pointer-events: none;
   z-index: -1;
+  pointer-events: none;
 }
 
-/* Mobile: gunakan bg-mobile.png langsung di body */
 @media (max-width: 768px) {
-  body {
+  #bg-layer {
     background-image: url('bg-mobile.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-position: center center;
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
   }
-  body::before {
-    display: none;
-  }
-  body::after {
-    position: fixed;
+  #bg-overlay {
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
     background: rgba(245, 240, 232, 0.22);
   }
 }
@@ -861,6 +856,9 @@ footer {
 <body>
 
 <!-- NAVBAR -->
+<div id="bg-layer"></div>
+<div id="bg-overlay"></div>
+
 <nav>
   <a href="#" class="nav-logo">月 <span>Yuè Studio</span></a>
   <ul class="nav-links">
