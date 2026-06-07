@@ -50,16 +50,20 @@ body {
 
 @media (max-width: 768px) {
   #bg-layer {
+    position: fixed;
+    inset: 0;
     background-image: url('bg-mobile.png');
-    background-position: center center;
-    position: absolute;
-    min-height: 100%;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     width: 100%;
+    height: 100%;
   }
   #bg-overlay {
-    position: absolute;
-    min-height: 100%;
+    position: fixed;
+    inset: 0;
     width: 100%;
+    height: 100%;
     background: rgba(245, 240, 232, 0.22);
   }
 }
