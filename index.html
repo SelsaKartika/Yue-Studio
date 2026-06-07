@@ -29,7 +29,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Background layer */
+/* Background layer - desktop */
 #bg-layer {
   position: fixed;
   top: 0; left: 0;
@@ -40,9 +40,6 @@ body {
   background-position: center top;
   background-repeat: no-repeat;
   z-index: -2;
-  will-change: transform;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 
 #bg-overlay {
@@ -53,8 +50,43 @@ body {
   background: rgba(245, 240, 232, 0.28);
   z-index: -1;
   pointer-events: none;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+}
+
+/* Mobile: tiap section punya background sendiri */
+@media (max-width: 768px) {
+  #bg-layer, #bg-overlay {
+    display: none;
+  }
+
+  body {
+    background-color: var(--cream);
+  }
+
+  .hero,
+  .tab-section {
+    background-image: url('bg-mobile.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    position: relative;
+  }
+
+  .hero::after,
+  .tab-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 240, 232, 0.25);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero > *,
+  .tab-section > * {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 /* ===== NAVBAR ===== */
